@@ -26,10 +26,11 @@ public class DropWeapon : MonoBehaviour
     void Update(){
         
     }
-    public void LoadDropWeapon(Weapon weapon) {
+    public void LoadDropWeapon(Weapon weapon,bool isSell) {
         dropWeapon = weapon;
         dropSprite = dropWeapon.Wepaon_Sprite;
         dropCost = dropWeapon.Weapon_Cost;
+        isSellItem = isSell;
 
         dropWeaponRender.sprite = dropSprite;
     }

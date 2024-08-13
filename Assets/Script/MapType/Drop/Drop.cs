@@ -19,7 +19,7 @@ public class Drop : MonoBehaviour
     float timer = 0;
 
     void Start(){
-        genDynamicDrop();
+        //genDynamicDrop();
     }
     void Update(){
         if(enableBounce)bounceFunction();

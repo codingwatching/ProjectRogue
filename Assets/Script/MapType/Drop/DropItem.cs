@@ -11,11 +11,11 @@ public class DropItem : MonoBehaviour
 {
     public SpriteRenderer dropItemRender;
     public BoxCollider2D TriggerBox;
+    [Space]
     public DropItemType local_type;
     public DropURPSprite local_sprites;
+    public int local_DropNum;
 
-    [Space]
-    public int DropNum;
     Sprite dropSprite =null;
 
     void Start(){
@@ -24,11 +24,12 @@ public class DropItem : MonoBehaviour
     void Update(){
         
     }
-    public void LoadDropItem(DropURPSprite sprites, DropItemType type) {
+    public void LoadDropItem(DropURPSprite sprites, DropItemType type , int dropNum) {
         local_type = type;
         local_sprites = sprites;
+        local_DropNum = dropNum;
 
-        foreach(var val in local_sprites.sprites) { 
+        foreach (var val in local_sprites.sprites) { 
             if(val.type == local_type) {
                 dropSprite = val.sprite;
             }
@@ -36,12 +37,23 @@ public class DropItem : MonoBehaviour
 
         dropItemRender.sprite = dropSprite;
     }
-    public void PickWeapon() {
+    public void PickCoin() {
+        Eco.instance.coin(+local_DropNum);
+    }
+    public void PickBlood() { 
+
+    }
+    public void PickFunc() { 
+        if(local_type == DropItemType.Blood) {
+            PickBlood();
+        }else if(local_type == DropItemType.Coin) {
+            PickCoin();
+        }
         Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.gameObject.layer == PlayerLayer) {
-            PickWeapon();
+            PickFunc();
         }
     }
     private void OnTriggerExit2D(Collider2D collision){
