@@ -8,6 +8,7 @@ using UnityEngine;
 public static class Data
 {
     public enum WeaponRank { Normal , Elige , Legend , Contraband } //武器品级
+    public enum DropItemType { Weapon , Blood , Coin }
 
     public static Vector2 defaultPos = new Vector2(0,0); //对象池默认位置
 

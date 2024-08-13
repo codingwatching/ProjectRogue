@@ -6,7 +6,7 @@ using static PlayerData;
 /// Íæ¼ÒBUFF So
 /// 2024.8.12 update C
 /// </summary>
-[CreateAssetMenu(fileName = "new Buff", menuName = "Buff/new BuffPrefab")]
+[CreateAssetMenu(fileName = "new Buff", menuName = "Player/Buff/new BuffPrefab")]
 public class BuffPrefab : ScriptableObject
 {
     [Tooltip("BUFFÃû×Ö")]

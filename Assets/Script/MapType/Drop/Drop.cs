@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 /// <summary>
-/// 掉落物基类 - 控制掉落物移动
+/// 掉落物移动类 - 控制掉落物移动
 /// 2024.8.12 update C
 /// </summary>
 public class Drop : MonoBehaviour

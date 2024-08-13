@@ -20,5 +20,5 @@ public class Eco : MonoBehaviour
     void Update(){
         
     }
-    public void addCoin(int num) => Bridge.instance.Coin += num;
+    public void coin(int num) => Bridge.instance.Coin += num;
 }

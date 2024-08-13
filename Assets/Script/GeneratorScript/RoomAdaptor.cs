@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static Data;
+/// <summary>
+/// 房间适配器
+/// 2024.8.13 update C
+/// </summary>
 public class RoomAdaptor : MonoBehaviour
 {
     public Vector2Int worldIndexPos;//世界index坐标 占位符
