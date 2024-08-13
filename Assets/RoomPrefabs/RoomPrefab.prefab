@@ -5267,8 +5267,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d70f745d596c9741acc9f1e3cbc1eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldIndexPos: {x: 0, y: 0}
   roomPos: {x: 0, y: 0}
   Rect: {x: 0, y: 0}
   tilemap: {fileID: 1232165496206125001}
   colliderMap: {fileID: 2241463158527154935}
   index: 0
+  RoomNode: {fileID: 0}
+  isEnterRoom: 0

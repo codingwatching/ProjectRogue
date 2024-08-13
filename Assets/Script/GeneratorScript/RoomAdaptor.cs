@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-
+using static Data;
 public class RoomAdaptor : MonoBehaviour
 {
     public Vector2Int worldIndexPos;//世界index坐标 占位符
@@ -11,8 +11,11 @@ public class RoomAdaptor : MonoBehaviour
 
     public Tilemap tilemap;//贴图层
     public Tilemap colliderMap;//碰撞层
-
+    [Space]
     public int index;
+
+    public GameObject RoomNode;
+    public bool isEnterRoom = false;
 
     void Start(){
         
@@ -65,5 +68,18 @@ public class RoomAdaptor : MonoBehaviour
     //设置门tile
     public void setDoorTile(Vector2Int pos) {
         colliderMap.SetTile(NormalizeV3(pos),null);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision){
+        if(collision.gameObject.layer == PlayerLayer) {
+            isEnterRoom = true;
+            RoomNode.GetComponent<IRoomNode>().onEnterRoom();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision){
+        if(collision.gameObject.layer == PlayerLayer) {
+            isEnterRoom = false;
+            RoomNode.GetComponent<IRoomNode>().onExitRoom();
+        }
     }
 }

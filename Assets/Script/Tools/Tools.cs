@@ -67,4 +67,9 @@ public class Tools
             func();
         }
     }
+    [System.Serializable]
+    public struct Range {
+        public int min;
+        public int max;
+    }
 }
