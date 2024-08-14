@@ -11518,9 +11518,12 @@ MonoBehaviour:
   worldIndexPos: {x: 0, y: 0}
   roomPos: {x: 0, y: 0}
   Rect: {x: 0, y: 0}
-  tilemap: {fileID: 6766989961540576562}
-  colliderMap: {fileID: 2903280900411789950}
+  doorTile: {fileID: 0}
+  RenderMap: {fileID: 6766989961540576562}
+  ColliderMap: {fileID: 2903280900411789950}
   index: 0
+  RoomNode: {fileID: 0}
+  isEnterRoom: 0
 --- !u!114 &3900608313589775925
 MonoBehaviour:
   m_ObjectHideFlags: 0

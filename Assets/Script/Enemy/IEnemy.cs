@@ -1,3 +1,7 @@
+/// <summary>
+/// 敌人通用接口
+/// 2024.8.14 update C
+/// </summary>
 public interface IEnemy
 {
     public void setActive();

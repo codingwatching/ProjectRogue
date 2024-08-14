@@ -11,6 +11,7 @@ public class EnemiesList : MonoBehaviour
         }
         instance = this;
     }
+    public List<GameObject> Scene1EnemyList;
 
     public List<GameObject> EnemyLevel1List;
     public List<GameObject> EnemyLevel2List;

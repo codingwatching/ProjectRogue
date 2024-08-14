@@ -26,6 +26,9 @@ public class PlayerAction : MonoBehaviour
     bool isDashCoolDown = false;
     Vector2 dashDirection;
 
+    float horizontalInput;
+    float verticalInput;
+
     void Start(){
         
     }
@@ -42,8 +45,8 @@ public class PlayerAction : MonoBehaviour
         dashFunction();
     }
     void movement() { 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
         Vector2 moveDirection = new Vector2(horizontalInput, verticalInput).normalized;
 

@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+/// <summary>
+/// µÐÈË×°ÔØÆ÷
+/// 2024.8.14 update C
+/// </summary>
 public class EnemyLoader : MonoBehaviour
 {
     public NavMeshAgent agent;

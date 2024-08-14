@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// µÐÈËÊý¾Ý SO
+/// 2024.8.14 update C
+/// </summary>
 [CreateAssetMenu(fileName = "new EnemyData", menuName = "Enemy/new EnemyData")]
 public class EnemyData : ScriptableObject
 {

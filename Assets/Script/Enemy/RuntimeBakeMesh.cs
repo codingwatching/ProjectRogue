@@ -3,7 +3,10 @@ using NavMeshPlus.Extensions;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-
+/// <summary>
+/// 动态路网烘焙
+/// 2024.8.14 update C
+/// </summary>
 namespace Assets.Scripts
 {
     class RuntimeBakeMesh: MonoBehaviour
