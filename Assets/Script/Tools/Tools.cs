@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 /// <summary>
 /// π§æﬂ¿‡
 /// </summary>
@@ -71,5 +72,10 @@ public class Tools
     public struct Range {
         public int min;
         public int max;
+    }
+    [System.Serializable]
+    public struct TileSwapSet {
+        public TileBase OriginTile;
+        public TileBase AfterTile; 
     }
 }

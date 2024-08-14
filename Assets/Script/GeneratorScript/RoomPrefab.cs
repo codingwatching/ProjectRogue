@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static RoomData;
 
-[CreateAssetMenu(fileName = "new RoomPrefab", menuName = "Room/new RoomPrefab")]
+[CreateAssetMenu(fileName = "new RoomPrefab", menuName = "Map/Room/new RoomPrefab")]
 public class RoomPrefab : ScriptableObject
 {
     [Tooltip("房间类型")]

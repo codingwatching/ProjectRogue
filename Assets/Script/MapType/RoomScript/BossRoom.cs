@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// 商店房间
+/// Boss房间
 /// 2024.8.14 update C
 /// </summary>
-public class ShopRoom : MonoBehaviour
+public class BossRoom : MonoBehaviour
 {
     void Start(){
         

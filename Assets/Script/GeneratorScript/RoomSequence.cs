@@ -4,9 +4,9 @@ using UnityEngine;
 using static RoomData;
 /// <summary>
 /// 房间顺序类
-/// 2024.8.12 update C
+/// 2024.8.13 update C
 /// </summary>
-[CreateAssetMenu(fileName = "new RoomSequence", menuName = "Room/new RoomSequence")]
+[CreateAssetMenu(fileName = "new RoomSequence", menuName = "Map/Room/new RoomSequence")]
 public class RoomSequence : ScriptableObject
 {
     [Tooltip("房间生成顺序")]

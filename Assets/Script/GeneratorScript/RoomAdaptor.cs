@@ -5,21 +5,27 @@ using UnityEngine.Tilemaps;
 using static Data;
 /// <summary>
 /// 房间适配器
-/// 2024.8.13 update C
+/// 2024.8.14 update C
 /// </summary>
 public class RoomAdaptor : MonoBehaviour
 {
+    [Header("房间参数")]
     public Vector2Int worldIndexPos;//世界index坐标 占位符
     public Vector2Int roomPos;//实际坐标
     public Vector2Int Rect;//房间大小
 
-    public Tilemap tilemap;//贴图层
-    public Tilemap colliderMap;//碰撞层
+    public DoorTileSwap doorTile;
+    [Header("房间组件")]
+    public Tilemap RenderMap;//贴图层
+    public Tilemap ColliderMap;//碰撞层
     [Space]
     public int index;
 
     public GameObject RoomNode;
     public bool isEnterRoom = false;
+
+    //门坐标合集
+    List<Vector3Int> DoorPosition = new List<Vector3Int>();
 
     void Start(){
         
@@ -71,7 +77,21 @@ public class RoomAdaptor : MonoBehaviour
     }
     //设置门tile
     public void setDoorTile(Vector2Int pos) {
-        colliderMap.SetTile(NormalizeV3(pos),null);
+        DoorPosition.Add(new Vector3Int(pos.x, pos.y, 0));
+        ColliderMap.SetTile(NormalizeV3(pos),null);
+        //RenderMap.SetTile(NormalizeV3(pos),doorTile.Door_IdleTile);
+    }
+    public void closeDoor() { 
+        foreach(var val in DoorPosition) {
+            RenderMap.SwapTile(doorTile.Door_IdleTile,doorTile.Door_ActiveAnimTile);
+            //ColliderMap.SetTile(NormalizeV3(pos), null);
+        }
+    }
+    public void openDoor() { 
+        foreach(var val in DoorPosition) {
+            RenderMap.SwapTile(doorTile.Door_IdleTile,doorTile.Door_DisactiveAnimTile);
+            ColliderMap.SetTile(val, null);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
