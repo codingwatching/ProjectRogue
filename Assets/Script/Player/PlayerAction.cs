@@ -39,22 +39,23 @@ public class PlayerAction : MonoBehaviour
             isDashCoolDown = true;
             dashDirection = (getMousePointV2() - v3to2(transform.position)).normalized;
         }
+        //Debug.Log(horizontalInput);
     }
     private void FixedUpdate(){
         movement();
         dashFunction();
     }
     void movement() { 
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
 
         Vector2 moveDirection = new Vector2(horizontalInput, verticalInput).normalized;
 
         if (moveDirection != Vector2.zero && !banMove){
-            Vector2 moveVector = moveDirection * moveSpeed * Time.deltaTime;
+            Vector2 moveVector = moveDirection * moveSpeed * Time.fixedDeltaTime;
             rgd.velocity = moveVector;
             //rgd.MovePosition(new Vector2(transform.position.x,transform.position.y) + moveVector);
-            //rgd.AddForce(moveDirection * moveForce , ForceMode2D.Impulse);
+            //rgd.AddForce(moveDirection * moveForce);
         }
         else {
             rgd.velocity = new Vector2(0, 0);

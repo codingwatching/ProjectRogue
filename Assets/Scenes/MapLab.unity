@@ -187,9 +187,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rgd: {fileID: 62412212}
-  moveSpeed: 250
+  moveSpeed: 100
   dashSpeed: 7.5
-  moveForce: 400
+  moveForce: 100
 --- !u!50 &62412212
 Rigidbody2D:
   serializedVersion: 4
@@ -202,7 +202,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 4
   m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -213,7 +213,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -1789,6 +1789,59 @@ Transform:
   - {fileID: 1256700779}
   m_Father: {fileID: 1051375851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1760730310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1760730312}
+  - component: {fileID: 1760730311}
+  m_Layer: 0
+  m_Name: TestEnemyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1760730311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760730310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83be819059a37a1498853021a89683af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scene1EnemyList:
+  - {fileID: 4994111382020570861, guid: f643fc5306a4b6046a3c6986954a95de, type: 3}
+  - {fileID: 5606117186112378399, guid: c9dfe1f627b044b45944ef68180ce915, type: 3}
+  - {fileID: 5780173024820099197, guid: 04833a7519fc20245a4dc88175a720ce, type: 3}
+  - {fileID: 1029014954995829984, guid: fce5d210c3a2a4a468a52dba494d375b, type: 3}
+  EnemyLevel1List: []
+  EnemyLevel2List: []
+  EnemyLevel3List: []
+  EnemyLevel4List: []
+--- !u!4 &1760730312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760730310}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1776044505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1971,6 +2024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DropItem: {fileID: 0}
   TriggerBox: {fileID: 0}
+  isTriggerChester: 0
 --- !u!4 &1920098328
 Transform:
   m_ObjectHideFlags: 0
@@ -2120,3 +2174,4 @@ SceneRoots:
   - {fileID: 1252064178}
   - {fileID: 752072316}
   - {fileID: 1920098328}
+  - {fileID: 1760730312}

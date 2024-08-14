@@ -33,6 +33,9 @@ public class RoomAdaptor : MonoBehaviour
     void Update(){
         
     }
+    public Vector3 getRndPos() {
+        return new Vector3(Random.Range(roomPos.x+2,roomPos.x+Rect.x-2), Random.Range(roomPos.y + 2, roomPos.y + Rect.y -2));
+    }
     //环形检测是否有路网连接
     public void checkRectRoadTile() { 
         for(int x =roomPos.x;x<roomPos.x + Rect.x;x++) {
@@ -93,7 +96,7 @@ public class RoomAdaptor : MonoBehaviour
             ColliderMap.SetTile(val, null);
         }
     }
-
+    //----
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.gameObject.layer == PlayerLayer) {
             isEnterRoom = true;
