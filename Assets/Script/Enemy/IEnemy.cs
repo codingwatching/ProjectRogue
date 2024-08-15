@@ -6,7 +6,7 @@ public interface IEnemy
 {
     public void setActive();
     public void setFreeze();
-    public void hurt();
+    public void hurt(float damage);
     public void onEnemyCreate();
     public void onEnemyDead();
     public int getDiffcult();

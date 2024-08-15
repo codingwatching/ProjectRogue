@@ -13,7 +13,7 @@ public class TestEnemy : MonoBehaviour , IEnemy
         return 3;
     }
 
-    public void hurt()
+    public void hurt(float damage)
     {
     }
 
@@ -48,10 +48,6 @@ public class TestEnemy : MonoBehaviour , IEnemy
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O)) {
-            //renderer2d.DOColor(Color.red, 1f);
-            renderer2d.DOGradientColor(gradient, 0.5f);
-        }
         //agent.SetDestination(player.transform.position);
         //agent.destination = player.transform.position;
     }
