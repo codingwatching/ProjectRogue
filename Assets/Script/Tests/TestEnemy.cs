@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using DG.Tweening;
 public class TestEnemy : MonoBehaviour , IEnemy
 {
     public GameObject player;
     NavMeshAgent agent;
-
+    public SpriteRenderer renderer2d;
     public int getDiffcult()
     {
         return 3;
@@ -32,21 +32,26 @@ public class TestEnemy : MonoBehaviour , IEnemy
     public void setFreeze()
     {
     }
-
+    Gradient gradient;
     // Start is called before the first frame update
     void Start()
     {
-        /*player = GameObject.Find("Player");
-        agent = GetComponent<NavMeshAgent>();
-        //agent.updateRotation = false;
-        //agent.updateUpAxis = false;
-        agent.autoRepath = true;
-        agent.Warp(transform.position);*/
+        // 设置颜色关键帧
+        GradientColorKey[] colorKeys = new GradientColorKey[2];
+        colorKeys[0] = new GradientColorKey(Color.red, 0f); // 起始颜色
+        colorKeys[1] = new GradientColorKey(Color.white, 1f); // 结束颜色
+
+        // 配置渐变
+        gradient.colorKeys = colorKeys;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.O)) {
+            //renderer2d.DOColor(Color.red, 1f);
+            renderer2d.DOGradientColor(gradient, 0.5f);
+        }
         //agent.SetDestination(player.transform.position);
         //agent.destination = player.transform.position;
     }
