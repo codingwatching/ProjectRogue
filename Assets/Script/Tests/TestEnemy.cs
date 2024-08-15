@@ -32,17 +32,9 @@ public class TestEnemy : MonoBehaviour , IEnemy
     public void setFreeze()
     {
     }
-    Gradient gradient;
     // Start is called before the first frame update
     void Start()
     {
-        // 设置颜色关键帧
-        GradientColorKey[] colorKeys = new GradientColorKey[2];
-        colorKeys[0] = new GradientColorKey(Color.red, 0f); // 起始颜色
-        colorKeys[1] = new GradientColorKey(Color.white, 1f); // 结束颜色
-
-        // 配置渐变
-        gradient.colorKeys = colorKeys;
     }
 
     // Update is called once per frame

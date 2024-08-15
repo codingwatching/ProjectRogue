@@ -24,4 +24,5 @@ public static class Data
     public static int PlayerLayer = 6;
     public static int EnemyLayer = 7;
     public static int DropLayer = 8;
+    public static int Attacker = 9;
 }

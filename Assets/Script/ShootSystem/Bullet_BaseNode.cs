@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Data;
 /// <summary>
 /// 通用子弹基类 - 参数加载 组件加载 子弹池引用回收
-/// 2024.8.12 update C
+/// 2024.8.15 update C
 /// </summary>
 public class Bullet_BaseNode : MonoBehaviour
 {
@@ -116,12 +117,28 @@ public class Bullet_BaseNode : MonoBehaviour
     }
 
     public void HitEvent(GameObject gameObject,Vector2 pos) {
-        if (enableEntity) {
+        var Player = PlayerSuperCtrl.instance.gameObject;
+        if (gameObject.layer == EnemyLayer && enablePierce){
+            gameObject.SendMessage("hurt", BulletDamage);
+
+            if (enableRepel)
+                gameObject.GetComponent<Force>()?.addRelativeForce(repelForce, -Player.transform.position);
+        }
+        else if(gameObject.layer == EnemyLayer && !enablePierce) {
+            gameObject.SendMessage("hurt", BulletDamage);
+
+            if (enableRepel)
+                gameObject.GetComponent<Force>()?.addRelativeForce(repelForce,-Player.transform.position);
+
+            reduceBullet();
+        }
+        else{
             reduceBullet();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision){
-        
+        Debug.Log("Trigger");
+        HitEvent(collision.gameObject,collision.transform.position);
     }
     private void OnTriggerExit2D(Collider2D collision){
         

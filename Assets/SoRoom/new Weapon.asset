@@ -19,7 +19,7 @@ MonoBehaviour:
   ID: 1
   BulletType: {fileID: 11400000, guid: 11cbf45628adade49850714dc1d0ba64, type: 2}
   Weapon_Damage: 1
-  Weapon_BulletSpeed: 1
+  Weapon_BulletSpeed: 0.5
   Weapon_Frequency: 3
   Weapon_Range: 5
   Weapon_RepelForce: 5

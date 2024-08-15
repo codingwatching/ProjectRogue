@@ -5,7 +5,7 @@ using static Eco;
 using static Data;
 /// <summary>
 /// ÎäÆ÷µôÂäÎï - ¿ØÖÆµôÂäÎï ÎäÆ÷ÌùÍ¼ÔØÈë ÒÔ¼°Åö×²¼ì²â
-/// 2024.8.13 update C
+/// 2024.8.15 update C
 /// </summary>
 public class DropWeapon : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class DropWeapon : MonoBehaviour
     int dropCost = 0;
 
     void Start(){
-        
+        dropWeaponRender = GetComponent<SpriteRenderer>();
     }
     void Update(){
         

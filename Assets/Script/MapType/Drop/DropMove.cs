@@ -29,14 +29,15 @@ public class DropMove : MonoBehaviour
         enableRndPos = false;
         enableMove = false;
     }
-    public void genDynamicDrop() {
+    public void genDynamicDrop(AnimationCurve curve) {
+        this.curve = curve;
         BounceRate = Random.Range(0.5f, 1f);
         rndPos();
         moveFunction();
         enableBounce = true;
     }
     public void rndPos() {
-        Vector3 rndPos = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+        Vector3 rndPos = new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
         transform.position += rndPos;
     }
     public void moveFunction() {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// µÐÈËÊý¾Ý SO
-/// 2024.8.14 update C
+/// 2024.8.15 update C
 /// </summary>
 [CreateAssetMenu(fileName = "new EnemyData", menuName = "Enemy/new EnemyData")]
 public class EnemyData : ScriptableObject
@@ -13,5 +13,5 @@ public class EnemyData : ScriptableObject
     public int LevelNum;
     public int Enemy_ID;
     [Space]
-    public GameObject[] Enemy_Drop;
+    public Drop[] Enemy_Drop;
 }

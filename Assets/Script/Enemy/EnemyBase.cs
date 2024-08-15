@@ -17,10 +17,10 @@ public class EnemyBase : MonoBehaviour , IEnemy
     public float Blood;
     public float Damage;
     void Start(){
-        
+        loadEnemyData(enemyData);
     }
     void Update(){
-        //if()
+
     }
     public void loadEnemyData(EnemyData data) {
         enemyData = data;
@@ -34,7 +34,8 @@ public class EnemyBase : MonoBehaviour , IEnemy
     }
     public void hurt(float damage){
         Blood -= damage;
-        if(Blood <= 0) {
+        onHitRedFlick();
+        if (Blood <= 0) {
             onEnemyDead();
         }
     }
@@ -43,7 +44,10 @@ public class EnemyBase : MonoBehaviour , IEnemy
 
     }
     public void onEnemyDead(){
-
+        foreach(var val in enemyData.Enemy_Drop) {
+            DropGenerator.instance.Drop(transform.position,val);
+        }
+        Destroy(gameObject);
     }
     public void setActive(){
         action.enabled = true;
