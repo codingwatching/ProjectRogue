@@ -66,6 +66,7 @@ public class PlayerAction : MonoBehaviour
         if (isDash) {
             banMove = true;
             PlayerSuperCtrl.instance.hitBox.enabled = false;
+            isInvincible = true;
             dashMove();
             dashTimeRecord += Time.deltaTime;
             if(dashTimeRecord >= dashTimeLast) {
@@ -73,6 +74,7 @@ public class PlayerAction : MonoBehaviour
                 dashTimeRecord = 0;
                 banMove = false;
                 PlayerSuperCtrl.instance.hitBox.enabled = true;
+                isInvincible = false;
             }
         }
         if (isDashCoolDown) {

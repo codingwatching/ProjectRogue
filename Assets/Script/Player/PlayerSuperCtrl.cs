@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using static PlayerData;
 /// <summary>
 /// 玩家总控 == 控制玩家转向，武器旋转
@@ -19,6 +20,7 @@ public class PlayerSuperCtrl : MonoBehaviour
     public GameObject HandHeld;
 
     public BoxCollider2D hitBox;
+    public SpriteRenderer playerSprite;
 
     Vector3 mousescreenPosition;
     Vector3 screenPositionInworld;
@@ -32,6 +34,18 @@ public class PlayerSuperCtrl : MonoBehaviour
         midPoint = Camera.main.WorldToScreenPoint(transform.position);
         mousePointCheck();
         if(!banRotate)weaponRotate();
+    }
+    public void onHit(int damage) {
+        if (!isInvincible){
+            Blood -= damage;
+            isInvincible = true;
+            if (Blood <= 0){
+
+            }
+        }
+    }
+    public void onHitRedFlick() { 
+
     }
     public void mousePointCheck() {
         mousescreenPosition = Input.mousePosition;
