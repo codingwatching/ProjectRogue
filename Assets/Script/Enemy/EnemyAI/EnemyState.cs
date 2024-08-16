@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 /// <summary>
 /// ∑øº‰À≥–Ú¿‡
 /// 2024.8.13 update C

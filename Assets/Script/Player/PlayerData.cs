@@ -22,8 +22,11 @@ public class PlayerData
     public static int forward = 1;
 
     //PlayerState
+    public static bool isDash = false;
     public static bool isInvincible = false;
     public static bool isDead = false;
+
+    public static float invincibleTime = 1f;
 
     public enum PlayerDataType { Speed , Blood , Damage , EmissionRate }
 }

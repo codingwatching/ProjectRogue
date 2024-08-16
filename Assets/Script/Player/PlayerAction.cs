@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using Cysharp.Threading.Tasks;
 using static Tools;
 using static PlayerData;
 /// <summary>
 /// 玩家行动
-/// 2024.8.12 update C
+/// 2024.8.15 update C
 /// </summary>
 public class PlayerAction : MonoBehaviour
 {
@@ -15,15 +17,11 @@ public class PlayerAction : MonoBehaviour
     public float moveSpeed = 7f; // 玩家移动速度
     public float dashSpeed = 7.5f;
     public float moveForce = 400f;
-    //
-    float dashTimeRecord = 0;
+
     float dashTimeLast = 0.5f;
-    //
-    float dashLimitRecord = 0;
+
     float dashLimitTime = 0.7f;
 
-    bool isDash = false;
-    bool isDashCoolDown = false;
     Vector2 dashDirection;
 
     float horizontalInput;
@@ -34,10 +32,11 @@ public class PlayerAction : MonoBehaviour
     }
     void Update(){
         //Debug.Log(isDashCoolDown);
-        if (Input.GetMouseButtonDown(1) && !isDashCoolDown) {
-            isDash = true;
-            isDashCoolDown = true;
+        if (Input.GetMouseButtonDown(1) && !banDash) {
+            dashMoveStart();
             dashDirection = (getMousePointV2() - v3to2(transform.position)).normalized;
+            dashMoveEnd();
+            dashCDFunc();
         }
         //Debug.Log(horizontalInput);
     }
@@ -64,33 +63,27 @@ public class PlayerAction : MonoBehaviour
     //Dash Function
     void dashFunction() { 
         if (isDash) {
-            banMove = true;
-            PlayerSuperCtrl.instance.hitBox.enabled = false;
-            isInvincible = true;
             dashMove();
-            dashTimeRecord += Time.deltaTime;
-            if(dashTimeRecord >= dashTimeLast) {
-                isDash = false;
-                dashTimeRecord = 0;
-                banMove = false;
-                PlayerSuperCtrl.instance.hitBox.enabled = true;
-                isInvincible = false;
-            }
-        }
-        if (isDashCoolDown) {
-            dashCoolDownFunc();
         }
     }
     void dashMove() {
         Vector2 moveVector = dashDirection * dashSpeed * Time.deltaTime;
         rgd.MovePosition(new Vector2(transform.position.x,transform.position.y) + moveVector);
     }
-    void dashCoolDownFunc() {
-        dashLimitRecord += Time.deltaTime;
-        if(dashLimitRecord >= dashLimitTime) {
-            isDashCoolDown = false;
-            dashLimitRecord = 0;
-        }
+    public void dashMoveStart() {
+        isDash = true;
+        banDash = true;
+        PlayerSuperCtrl.instance.hitBox.enabled = false;
+        isInvincible = true;
     }
-    //----
+    public async void dashMoveEnd() { 
+        await UniTask.Delay(TimeSpan.FromSeconds(dashTimeLast), ignoreTimeScale: false);
+        isDash = false;
+        PlayerSuperCtrl.instance.hitBox.enabled = true;
+        isInvincible = false;
+    }
+    public async void dashCDFunc() {
+        await UniTask.Delay(TimeSpan.FromSeconds(dashLimitTime), ignoreTimeScale: false);
+        banDash = false;
+    }
 }

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Cysharp.Threading.Tasks;
+using System;
 using static PlayerData;
 /// <summary>
-/// 玩家总控 == 控制玩家转向，武器旋转
-/// 2024.8.12 update C
+/// 玩家总控 == 控制玩家转向，武器旋转 玩家受击 玩家死亡 玩家无敌
+/// 2024.8.15 update C
 /// </summary>
 public class PlayerSuperCtrl : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class PlayerSuperCtrl : MonoBehaviour
 
     public BoxCollider2D hitBox;
     public SpriteRenderer playerSprite;
+    public Gradient gradient;
 
     Vector3 mousescreenPosition;
     Vector3 screenPositionInworld;
@@ -37,14 +40,20 @@ public class PlayerSuperCtrl : MonoBehaviour
     }
     public void onHit(int damage) {
         if (!isInvincible){
+            onHitRedFlick();
             Blood -= damage;
             isInvincible = true;
             if (Blood <= 0){
-
+                Dead();
             }
         }
     }
-    public void onHitRedFlick() { 
+    public async void onHitRedFlick() {
+        playerSprite.DOGradientColor(gradient, 0.4f);
+        await UniTask.Delay(TimeSpan.FromSeconds(invincibleTime), ignoreTimeScale: false);
+        isInvincible = false;
+    }
+    public void Dead() { 
 
     }
     public void mousePointCheck() {

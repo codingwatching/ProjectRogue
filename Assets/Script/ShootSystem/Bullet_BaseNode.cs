@@ -137,7 +137,7 @@ public class Bullet_BaseNode : MonoBehaviour
         }
     }
     private void OnTriggerEnter2D(Collider2D collision){
-        Debug.Log("Trigger");
+        //Debug.Log("Trigger");
         HitEvent(collision.gameObject,collision.transform.position);
     }
     private void OnTriggerExit2D(Collider2D collision){
