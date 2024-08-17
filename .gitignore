@@ -45,3 +45,6 @@ Thumbs.db
 *.mdf
 *.ldf
 *.ndf
+
+ProjectSettings/PackageManagerSettings.asset
+ProjectSettings/ProjectVersion.txt
