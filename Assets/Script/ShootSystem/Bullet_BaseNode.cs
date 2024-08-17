@@ -26,7 +26,7 @@ public class Bullet_BaseNode : MonoBehaviour
     public float BulletDamage = 0;
     public float BulletSpreadRange = 0;
     public Sprite[] BulletSprites;
-    public float BulletSpriteLoopFrequency=0.5f;
+    public float BulletSpriteLoopFrequency = 0.5f;
 
     Vector3 mousescreenPosition;
     Vector3 screenPositionInworld;
@@ -35,43 +35,54 @@ public class Bullet_BaseNode : MonoBehaviour
 
     float timer = 0;
 
-    int SpriteCount=1;
+    int SpriteCount = 1;
     int SpriteCurrentIndex = 0;
     float SpriteLoopTimer = 0;
     bool isLoopSprite = false;
 
-    void Start(){
+    void Start() { }
 
-    }
-    void Update(){
+    void Update()
+    {
         if (isLoopSprite) LoopBulletSprite();
     }
-    void FixedUpdate(){
-        if (isUsed){
+
+    void FixedUpdate()
+    {
+        if (isUsed)
+        {
             Function();
             outTimeReduceFunction();
         }
     }
-    public void ShootFunc() {
+    public void ShootFunc()
+    {
         InitBulletSprite();
         DirAngle();
         isUsed = true;
     }
-    public void InitBulletSprite() {
+
+    public void InitBulletSprite()
+    {
         SpriteCount = BulletSprites.Length;
-        if (SpriteCount == 1) {
+        if (SpriteCount == 1)
+        {
             SpriteRender.sprite = BulletSprites[0];
         }
-        else if(SpriteCount > 1){
+        else if (SpriteCount > 1)
+        {
             isLoopSprite = true;
         }
-        else if(SpriteCount < 1) {
+        else if (SpriteCount < 1)
+        {
         }
     }
     /// <summary>
     /// µ÷Õû½Ç¶È
     /// </summary>
-    public void DirAngle(){
+
+    public void DirAngle()
+    {
 
         mousescreenPosition = Input.mousePosition;
         mousescreenPosition.z = 0;
@@ -88,12 +99,17 @@ public class Bullet_BaseNode : MonoBehaviour
 
         transform.Rotate(0, 0, angle);
     }
-    public void Function(){
-        transform.Translate(0, BulletSpeed, 0, Space.Self);
+
+    public void Function()
+    {
+        transform.Translate(0, BulletSpeed * Time.deltaTime, 0, Space.Self);
     }
-    void LoopBulletSprite() {
+
+    void LoopBulletSprite()
+    {
         SpriteLoopTimer += Time.deltaTime;
-        if(SpriteLoopTimer >= BulletSpriteLoopFrequency) {
+        if (SpriteLoopTimer >= BulletSpriteLoopFrequency)
+        {
             SpriteLoopTimer = 0;
             SpriteCurrentIndex++;
             if (SpriteCurrentIndex == SpriteCount)
@@ -102,14 +118,17 @@ public class Bullet_BaseNode : MonoBehaviour
             SpriteRender.sprite = BulletSprites[SpriteCurrentIndex];
         }
     }
-    public void outTimeReduceFunction() {
+    public void outTimeReduceFunction()
+    {
         timer += Time.deltaTime;
-        if(timer >= reduceTime) {
+        if (timer >= reduceTime)
+        {
             timer = 0;
             reduceBullet();
         }
     }
-    public void reduceBullet() {
+    public void reduceBullet()
+    {
         isUsed = false;
         isLoopSprite = false;
 
@@ -118,32 +137,38 @@ public class Bullet_BaseNode : MonoBehaviour
         BulletPool.GameObjectPoolManager.Instance.Recycle("BulletUR", gameObject);
     }
 
-    public void HitEvent(GameObject gameObject,Vector2 pos) {
+    public void HitEvent(GameObject gameObject, Vector2 pos)
+    {
         var Player = PlayerSuperCtrl.instance.gameObject;
-        if (gameObject.layer == EnemyLayer && enablePierce){
+        if (gameObject.layer == EnemyLayer && enablePierce)
+        {
             gameObject.SendMessage("hurt", BulletDamage);
 
             if (enableRepel)
                 gameObject.GetComponent<Force>()?.addRelativeForce(repelForce, -Player.transform.position);
         }
-        else if(gameObject.layer == EnemyLayer && !enablePierce) {
+        else if (gameObject.layer == EnemyLayer && !enablePierce)
+        {
             gameObject.SendMessage("hurt", BulletDamage);
 
             if (enableRepel)
-                gameObject.GetComponent<Force>()?.addRelativeForce(repelForce,-Player.transform.position);
+                gameObject.GetComponent<Force>()?.addRelativeForce(repelForce, -Player.transform.position);
 
             reduceBullet();
         }
-        else{
+        else
+        {
             reduceBullet();
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision){
-        //Debug.Log("Trigger");
-        HitEvent(collision.gameObject,collision.transform.position);
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Trigger");
+        HitEvent(collision.gameObject, collision.transform.position);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Collider");
         //HitEvent(collision.gameObject, collision.transform.position);
     }
 }

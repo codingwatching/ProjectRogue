@@ -106,7 +106,7 @@ MonoBehaviour:
   enableBounce: 0
   enablePierce: 0
   enableEntity: 0
-  enableRepel: 0
+  enableRepel: 1
   repelForce: 0
   BulletSpeed: 0.1
   BulletDamage: 0

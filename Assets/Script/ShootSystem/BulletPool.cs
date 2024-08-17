@@ -17,16 +17,20 @@ namespace BulletPool
         public Dictionary<string, GameObjectPool> pools = new Dictionary<string, GameObjectPool>();
 
         // ¶ÔÏó³Ø×¢²á
-        public void Register(string name, GameObject prefab,int num,GameObject fold){
-            if (pools.TryGetValue(name, out GameObjectPool pool)){
+        public void Register(string name, GameObject prefab, int num, GameObject fold)
+        {
+            if (pools.TryGetValue(name, out GameObjectPool pool))
+            {
                 pool.prefab = prefab;
             }
-            else{
+            else
+            {
                 pool = new GameObjectPool();
                 pool.prefab = prefab;
                 pools.Add(name, pool);
 
-                for (int i = 0; i < num; i++){
+                for (int i = 0; i < num; i++)
+                {
                     var s = GameObject.Instantiate(prefab);
                     pool.pool.Enqueue(s);
                     s.transform.parent = fold.transform;
@@ -35,20 +39,26 @@ namespace BulletPool
             }
         }
 
-        public GameObject Get(string name){
-            if (pools.TryGetValue(name, out GameObjectPool pool)){
+        public GameObject Get(string name)
+        {
+            if (pools.TryGetValue(name, out GameObjectPool pool))
+            {
                 return pool.Get();
             }
-            else{
+            else
+            {
                 return null;
             }
         }
 
-        public void Recycle(string name, GameObject go){
-            if (pools.TryGetValue(name, out GameObjectPool pool)){
+        public void Recycle(string name, GameObject go)
+        {
+            if (pools.TryGetValue(name, out GameObjectPool pool))
+            {
                 pool.Recycle(go);
             }
-            else{
+            else
+            {
                 pool = new GameObjectPool();
                 pool.prefab = go;
                 pools.Add(name, pool);
@@ -63,15 +73,19 @@ namespace BulletPool
     {
         public GameObject prefab;
         public Queue<GameObject> pool = new Queue<GameObject>();
-        public GameObject Get(){
-            if (pool.Count > 0){
+        public GameObject Get()
+        {
+            if (pool.Count > 0)
+            {
                 return pool.Dequeue();
             }
-            else{
+            else
+            {
                 return GameObject.Instantiate(prefab);
             }
         }
-        public void Recycle(GameObject go) { 
+        public void Recycle(GameObject go)
+        {
             go.transform.position = defaultPos;
             pool.Enqueue(go);
         }
