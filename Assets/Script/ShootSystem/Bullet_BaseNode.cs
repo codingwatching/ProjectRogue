@@ -4,7 +4,7 @@ using UnityEngine;
 using static Data;
 /// <summary>
 /// 通用子弹基类 - 参数加载 组件加载 子弹池引用回收
-/// 2024.8.15 update C
+/// 2024.8.17 update C
 /// </summary>
 public class Bullet_BaseNode : MonoBehaviour
 {
@@ -88,11 +88,9 @@ public class Bullet_BaseNode : MonoBehaviour
         mousescreenPosition.z = 0;
         screenPositionInworld = Camera.main.ScreenToWorldPoint(mousescreenPosition);
         screenPositionInworld.z = 0;
-
-        Debug.Log(mousescreenPosition+"/"+ screenPositionInworld);
         
         Vector3 face = transform.up;
-        direction = screenPositionInworld - PlayerSuperCtrl.instance.transform.position;
+        direction = screenPositionInworld - transform.position;
         float angle = Vector3.SignedAngle(face, direction, Vector3.forward);
 
         angle += BulletSpreadRange;

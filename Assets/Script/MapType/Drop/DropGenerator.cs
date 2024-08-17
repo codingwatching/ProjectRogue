@@ -37,11 +37,14 @@ public class DropGenerator : MonoBehaviour
     public GameObject getDrop() {
         GameObject drop = null;
         drop = BulletPool.GameObjectPoolManager.Instance.Get("DropUR");
+        drop.name = "Drop_moving";
         return drop;
     }
     public void reduceDrop(GameObject gameObject) {
-        //Destroy(gameObject.GetComponent<DropWeapon>());
-        //Destroy(gameObject.GetComponent<DropItem>());
+        gameObject.GetComponent<DropMove>().resetParameter();
+        Destroy(gameObject.GetComponent<DropWeapon>());
+        Destroy(gameObject.GetComponent<DropItem>());
+        gameObject.name = "Drop_reduce";
         BulletPool.GameObjectPoolManager.Instance.Recycle("DropUR", gameObject);
     }
     //生成武器掉落物 默认可捡起
@@ -58,13 +61,13 @@ public class DropGenerator : MonoBehaviour
         GameObject coin = getDrop();
         coin.transform.position = pos;
         coin.AddComponent<DropItem>().LoadDropItem(URPSprite.sprites[2].sprite, DropItemType.Coin, num);
-        //coin.GetComponent<DropMove>().genDynamicDrop(curve.animaCurve);
+        coin.GetComponent<DropMove>().genDynamicDrop(curve.animaCurve);
     }
     //生成血 默认动态掉落
     public void DropBlood(Vector2 pos,int num) {
         GameObject blood = getDrop();
         blood.transform.position = pos;
         blood.AddComponent<DropItem>().LoadDropItem(URPSprite.sprites[1].sprite, DropItemType.Blood, num);
-        //blood.GetComponent<DropMove>().genDynamicDrop(curve.animaCurve);
+        blood.GetComponent<DropMove>().genDynamicDrop(curve.animaCurve);
     }
 }

@@ -46,7 +46,7 @@ public class DropItem : MonoBehaviour
         }
     }
     public void removeFunc() {
-        //GetComponent<DropMove>().resetParameter();
+        GetComponent<DropMove>().resetParameter();
         DropGenerator.instance.reduceDrop(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision){

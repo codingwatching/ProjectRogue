@@ -26,8 +26,8 @@ public class DropMove : MonoBehaviour
         //genDynamicDrop();
     }
     void Update(){
-        //if (enableBounce) bounceFunction();
-        //if (enableTracePlayer) tracePlayerFunc();
+        if (enableBounce) bounceFunction();
+        if (enableTracePlayer) tracePlayerFunc();
     }
     public void genIdleDrop() {
         enableBounce = false;
@@ -38,7 +38,7 @@ public class DropMove : MonoBehaviour
         this.curve = curve;
         BounceRate = Random.Range(0.5f, 1f);
         rndPos();
-        //moveFunction();
+        moveFunction();
         enableBounce = true;
         waitForTrace();
     }
@@ -69,10 +69,11 @@ public class DropMove : MonoBehaviour
     public void tracePlayerFunc() {
         var player = PlayerSuperCtrl.instance.gameObject;
 
+        float rate = 0.8f;
         float x = player.transform.position.x - transform.position.x;
         float y = player.transform.position.y - transform.position.y;
 
-        Vector2 v2 = new Vector2(transform.position.x + x / 6 * Time.fixedDeltaTime, transform.position.y + y / 6 * Time.fixedDeltaTime);
+        Vector2 v2 = new Vector2(transform.position.x + x * rate * Time.fixedDeltaTime, transform.position.y + y * rate * Time.fixedDeltaTime);
 
         transform.position = v2;
     }
