@@ -78,6 +78,8 @@ public class Bullet_BaseNode : MonoBehaviour
         screenPositionInworld = Camera.main.ScreenToWorldPoint(mousescreenPosition);
         screenPositionInworld.z = 0;
 
+        Debug.Log(mousescreenPosition+"/"+ screenPositionInworld);
+        
         Vector3 face = transform.up;
         direction = screenPositionInworld - PlayerSuperCtrl.instance.transform.position;
         float angle = Vector3.SignedAngle(face, direction, Vector3.forward);
