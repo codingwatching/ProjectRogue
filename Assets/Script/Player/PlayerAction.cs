@@ -26,65 +26,81 @@ public class PlayerAction : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
-    void Start(){
-        
+    void Start()
+    {
+
     }
-    void Update(){
-        if (Input.GetMouseButtonDown(1)) {
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
             genDashFunc();
         }
     }
-    private void FixedUpdate(){
+    private void FixedUpdate()
+    {
         movement();
         dashFunction();
     }
-    void movement() { 
+    void movement()
+    {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
         Vector2 moveDirection = new Vector2(horizontalInput, verticalInput).normalized;
 
-        if (moveDirection != Vector2.zero && !banMove){
+        if (moveDirection != Vector2.zero && !banMove)
+        {
             Vector2 moveVector = moveDirection * moveSpeed * Time.fixedDeltaTime;
             rgd.velocity = moveVector;
             //rgd.MovePosition(new Vector2(transform.position.x,transform.position.y) + moveVector);
             //rgd.AddForce(moveDirection * moveForce);
         }
-        else {
+        else
+        {
             rgd.velocity = new Vector2(0, 0);
         }
     }
     //Dash Function
-    void dashFunction() { 
-        if (isDash) {
+    void dashFunction()
+    {
+        if (isDash)
+        {
             dashMove();
         }
     }
-    void dashMove() {
+    void dashMove()
+    {
         Vector2 moveVector = dashDirection * dashSpeed * Time.deltaTime;
-        rgd.MovePosition(new Vector2(transform.position.x,transform.position.y) + moveVector);
+        rgd.MovePosition(new Vector2(transform.position.x, transform.position.y) + moveVector);
     }
-    public void genDashFunc() {
-        if (!banDash){
+    public void genDashFunc()
+    {
+        if (!banDash)
+        {
             dashMoveStart();
             dashMoveEnd();
             dashCDFunc();
         }
     }
-    public void dashMoveStart() {
+    public void dashMoveStart()
+    {
         isDash = true;
         banDash = true;
         PlayerSuperCtrl.instance.hitBox.enabled = false;
         isInvincible = true;
         dashDirection = (getMousePointV2() - v3to2(transform.position)).normalized;
     }
-    public async void dashMoveEnd() { 
+    public async void dashMoveEnd()
+    {
         await UniTask.Delay(TimeSpan.FromSeconds(dashTimeLast), ignoreTimeScale: false);
         isDash = false;
         PlayerSuperCtrl.instance.hitBox.enabled = true;
         isInvincible = false;
     }
-    public async void dashCDFunc() {
+    public async void dashCDFunc()
+    {
         await UniTask.Delay(TimeSpan.FromSeconds(dashLimitTime), ignoreTimeScale: false);
         banDash = false;
     }
