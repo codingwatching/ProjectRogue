@@ -7,7 +7,7 @@ using static Tools;
 using static PlayerData;
 /// <summary>
 /// 玩家行动
-/// 2024.8.15 update C
+/// 2024.8.17 update C
 /// </summary>
 public class PlayerAction : MonoBehaviour
 {
@@ -18,9 +18,8 @@ public class PlayerAction : MonoBehaviour
     public float dashSpeed = 7.5f;
     public float moveForce = 400f;
 
-    float dashTimeLast = 0.5f;
-
-    float dashLimitTime = 0.7f;
+    float dashTimeLast = 0.5f;//冲刺持续时间
+    float dashLimitTime = 0.7f;//冲刺cd时间
 
     Vector2 dashDirection;
 
@@ -31,14 +30,9 @@ public class PlayerAction : MonoBehaviour
         
     }
     void Update(){
-        //Debug.Log(isDashCoolDown);
-        if (Input.GetMouseButtonDown(1) && !banDash) {
-            dashMoveStart();
-            dashDirection = (getMousePointV2() - v3to2(transform.position)).normalized;
-            dashMoveEnd();
-            dashCDFunc();
+        if (Input.GetMouseButtonDown(1)) {
+            genDashFunc();
         }
-        //Debug.Log(horizontalInput);
     }
     private void FixedUpdate(){
         movement();
@@ -70,11 +64,19 @@ public class PlayerAction : MonoBehaviour
         Vector2 moveVector = dashDirection * dashSpeed * Time.deltaTime;
         rgd.MovePosition(new Vector2(transform.position.x,transform.position.y) + moveVector);
     }
+    public void genDashFunc() {
+        if (!banDash){
+            dashMoveStart();
+            dashMoveEnd();
+            dashCDFunc();
+        }
+    }
     public void dashMoveStart() {
         isDash = true;
         banDash = true;
         PlayerSuperCtrl.instance.hitBox.enabled = false;
         isInvincible = true;
+        dashDirection = (getMousePointV2() - v3to2(transform.position)).normalized;
     }
     public async void dashMoveEnd() { 
         await UniTask.Delay(TimeSpan.FromSeconds(dashTimeLast), ignoreTimeScale: false);
