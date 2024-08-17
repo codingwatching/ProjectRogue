@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// 玩家手持 = 控制手持贴图 待写
-/// 2024.8.12 update C
+/// 玩家手持切换
+/// 2024.8.17 update C
 /// </summary>
 public class PlayerHeld : MonoBehaviour
 {
-    public GameObject TestBullet;
-    public GameObject TestBullet2;
-    public GameObject FirePos;
+    public ShootSystem shootSystem;
+    public MeleeSystem meleeSystem;
 
     void Start(){
     }

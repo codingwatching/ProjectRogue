@@ -5,7 +5,7 @@ using static Data;
 /// <summary>
 /// 物品掉落物 - 控制掉落物 物品贴图载入 以及碰撞检测 
 /// 类型：血，硬币 /待定
-/// 2024.8.15 update C
+/// 2024.8.17 update C
 /// </summary>
 public class DropItem : MonoBehaviour
 {
@@ -32,10 +32,11 @@ public class DropItem : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = sprite;
     }
     public void PickCoin() {
-        Eco.instance.coin(+local_DropNum);
+        //Eco.instance.coin(+local_DropNum);
+        removeFunc();
     }
-    public void PickBlood() { 
-
+    public void PickBlood() {
+        removeFunc();
     }
     public void PickFunc() { 
         if(local_type == DropItemType.Blood) {
@@ -43,7 +44,10 @@ public class DropItem : MonoBehaviour
         }else if(local_type == DropItemType.Coin) {
             PickCoin();
         }
-        Destroy(gameObject);
+    }
+    public void removeFunc() {
+        //GetComponent<DropMove>().resetParameter();
+        DropGenerator.instance.reduceDrop(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.gameObject.layer == PlayerLayer) {
