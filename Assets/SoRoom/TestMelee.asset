@@ -18,6 +18,6 @@ MonoBehaviour:
   Weapon_Rank: 0
   ID: 0
   BulletType: {fileID: 0}
-  MeleeWeapon_HitBoxRange: 0
-  MeleeWeapon_Damage: 0
-  MeleeWeapon_HitFrequency: 0
+  MeleeWeapon_HitBoxRange: 1
+  MeleeWeapon_Damage: 3
+  MeleeWeapon_HitFrequency: 0.3

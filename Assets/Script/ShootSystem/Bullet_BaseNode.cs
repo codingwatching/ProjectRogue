@@ -111,7 +111,7 @@ public class Bullet_BaseNode : MonoBehaviour
         isUsed = false;
         isLoopSprite = false;
 
-        gameObject.name = "reduce";
+        //gameObject.name = "reduce";
 
         BulletPool.GameObjectPoolManager.Instance.Recycle("BulletUR", gameObject);
     }
@@ -140,7 +140,8 @@ public class Bullet_BaseNode : MonoBehaviour
         //Debug.Log("Trigger");
         HitEvent(collision.gameObject,collision.transform.position);
     }
-    private void OnTriggerExit2D(Collider2D collision){
-        
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //HitEvent(collision.gameObject, collision.transform.position);
     }
 }

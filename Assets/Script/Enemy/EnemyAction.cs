@@ -18,7 +18,7 @@ public class EnemyAction : MonoBehaviour
         Player = PlayerSuperCtrl.instance.gameObject;
     }
     void Update(){
-        
+        if (enableTracePlayer) TracePlayerFunc();
     }
     public void EnemySetUp() {
         agent.updateRotation = false;

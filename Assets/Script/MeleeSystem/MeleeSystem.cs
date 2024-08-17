@@ -14,7 +14,7 @@ public class MeleeSystem : MonoBehaviour
     public MeleeHeld meleeHeld;
 
     public bool HeldMeleeWeapon = false;
-
+    [Header("RuntimeData")]
     public float HitBoxRange;
     public float MeleeDamage;
     public float HitFrequency;
